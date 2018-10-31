@@ -1,6 +1,6 @@
 #Joe Brennan and James Marshall
 #Block Stacking
-
+from typing import Tuple
 
 infile = open("blocks10.in", "r")
 #outfile = open("outfile.txt", "w")
@@ -23,9 +23,14 @@ for block in base_blocks:
 
 blocks.sort(key=lambda x: x[0]*x[1], reverse = 1)
 
-dp_table = [[] for block in blocks]
+list = [1,2,3]
+print(list[:1])
+
+dp_table = [Tuple[int,int] for block in blocks]
 dp_table[0] = blocks[0][2]
 for i in range(1, len(dp_table) - 1):
-    sublist = [dp_table[:i-1]]
-    if blocks[i][0] > blocks[i+1][0] and
-    dp_table[i] = dp_table[i-1] + newblockheight
+    sublist = [dp_table[:i]]
+    sublist = filter(lambda x: (blocks[x[1]][0] < blocks[i][0] and blocks[x[1]][1] < blocks[i][1]) or (blocks[x[1]][0] < blocks[i][1] and blocks[x[1]][1] < blocks[i][0]), sublist)
+    dp_table[i] = blocks[i][2] + max(sublist,key=lambda x: x[0])
+
+print(dp_table)
