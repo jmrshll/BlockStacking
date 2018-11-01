@@ -35,7 +35,7 @@ for i in range(1, len(dp_table)):
     sublist = dp_table[:i]
 
     # filter the blocks list to ensure that we have only blocks with areas compatible with the block we are now using as a base
-    sublist = (list)(filter(lambda x: (((blocks[x[1]][0] > blocks[i][0]) and (blocks[x[1]][1] > blocks[i][1]))
+    sublist = list(filter(lambda x: (((blocks[x[1]][0] > blocks[i][0]) and (blocks[x[1]][1] > blocks[i][1]))
     			or ((blocks[x[1]][0] > blocks[i][1]) and (blocks[x[1]][1] > blocks[i][0]))), sublist))
     print(sublist)
 
