@@ -35,8 +35,6 @@ for block in rotated_blocks:
 #sort the blocks by area
 blocks.sort(key=lambda x: x[0]*x[1], reverse = 1)
 
-print(blocks)
-
 dp_table = [[] for block in blocks] #The tuples are (maxheight, index, previousblockindex)
 dp_table[0] = [blocks[0][2], 0, -1] #create the first block in the dp table
 for i in range(1, len(dp_table)):
@@ -44,7 +42,6 @@ for i in range(1, len(dp_table)):
 
     # filter the blocks list to ensure that we have only blocks with areas compatible with the block we are now using as a base
     sublist = list(filter(lambda x: (blocks[x[1]][0] > blocks[i][0]) and (blocks[x[1]][1] > blocks[i][1]), sublist))
-    print(sublist)
 
     if len(sublist) == 0:
     	#if a block is the bottom block in a stack, its previous block index is -1
@@ -54,8 +51,6 @@ for i in range(1, len(dp_table)):
         prevBlock = max(sublist, key=lambda x: x[0])
         newHeight = blocks[i][2] + prevBlock[0]
         dp_table[i] = [newHeight, i, prevBlock[1]]
-
-print(dp_table)
 
 #get the entry from the dp table with the highest total height
 maxHeightEntry = max(dp_table, key=lambda x: x[0])
