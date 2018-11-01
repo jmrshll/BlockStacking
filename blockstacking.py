@@ -2,11 +2,11 @@
 #Block Stacking
 import sys
 
-#infilePath = sys.argv[0]
-#outfilePath = sys.argv[1]
+infilePath = sys.argv[1]
+outfilePath = sys.argv[2]
 
-infile = open("blocks100.in", "r")
-#outfile = open("outfile.txt", "w")
+infile = open(infilePath, "r")
+outfile = open(outfilePath, "w")
 numBlocks = infile.readline()
 
 base_blocks = []
@@ -65,3 +65,9 @@ while(dp_table[currIndex][2] != -1):
 print("The tallest tower has " + str(len(solutionBlockList)) + " blocks and a height of " + str(totalHeight))
 
 outfile.write(str(totalHeight))
+for solnBlock in reversed(solutionBlockList):
+	x = blocks[solnBlock[1]][0]
+	y = blocks[solnBlock[1]][1]
+	z = blocks[solnBlock[1]][2]
+
+	outfile.write(str(x) + " " + str(y) + " " + str(z))
